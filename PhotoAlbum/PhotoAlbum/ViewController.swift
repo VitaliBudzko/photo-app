@@ -33,10 +33,14 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @IBOutlet weak var collectionView: UICollectionView!
     @IBAction func addButton(_ sender: Any) {
         addButtonPressed = true
+        reloadAllButtonPressed = false
+        changeImagesAmount()
     }
     
     @IBAction func reloadAll(_ sender: Any) {
         reloadAllButtonPressed = true
+        addButtonPressed = false
+       changeImagesAmount()
     }
     
     override func viewDidLoad() {
@@ -115,6 +119,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             total = secondImagesAmount
         }
         finshedFetchingImagesInfo(totalImages: total)
+        collectionView.reloadData()
     }
     
     func finshedFetchingImagesInfo(totalImages: Int) {
